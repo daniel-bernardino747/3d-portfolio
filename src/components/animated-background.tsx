@@ -1,17 +1,17 @@
 "use client";
-import React, { Suspense, useEffect, useRef, useState } from "react";
-import { Application, SPEObject, SplineEvent } from "@splinetool/runtime";
+import { Skill, SkillNames, SKILLS } from "@/data/constants";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { sleep } from "@/lib/utils";
+import { Application, SplineEvent } from "@splinetool/runtime";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-const Spline = React.lazy(() => import("@splinetool/react-spline"));
-import { Skill, SkillNames, SKILLS } from "@/data/constants";
-import { sleep } from "@/lib/utils";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { usePreloader } from "./preloader";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
-import { Section, getKeyboardState } from "./animated-background-config";
+import React, { Suspense, useEffect, useRef, useState } from "react";
+import { getKeyboardState, Section } from "./animated-background-config";
+import { usePreloader } from "./preloader";
 import { useSounds } from "./realtime/hooks/use-sounds";
+const Spline = React.lazy(() => import("@splinetool/react-spline"));
 
 gsap.registerPlugin(ScrollTrigger);
 

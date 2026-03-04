@@ -1,18 +1,17 @@
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import React from "react";
-import { Button } from "../ui/button";
-import { File, Github, Linkedin } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { config } from "@/data/config";
+import { cn } from "@/lib/utils";
+import { File } from "lucide-react";
+import Link from "next/link";
+import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
 import { usePreloader } from "../preloader";
 import { BlurIn, BoxReveal } from "../reveal-animations";
 import ScrollDownIcon from "../scroll-down-icon";
-import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
-import { config } from "@/data/config";
+import { Button } from "../ui/button";
 
 import SectionWrapper from "../ui/section-wrapper";
 
@@ -83,7 +82,7 @@ const HeroSection = () => {
               <div className="mt-8 flex flex-col gap-3 w-fit">
                 <Link
                   href={
-                    "https://drive.google.com/file/d/1MTSsUA8V7Po2AsNXT8kZ5sLOpzC8l7qm/view?usp=sharing"
+                    "https://drive.google.com/file/d/1LkFTG1hnt_YHazwRutSskEA0QaJ1rTfA/view?usp=sharing"
                   }
                   target="_blank"
                   className="flex-1"
