@@ -1,6 +1,6 @@
 import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
+import path from "path";
 
 type Metadata = {
   title: string;
@@ -12,6 +12,9 @@ type Metadata = {
 };
 
 function getMDXFiles(dir: string) {
+  if (!fs.existsSync(dir)) {
+    return [];
+  }
   return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
 }
 
@@ -40,6 +43,9 @@ export function getBlogPosts() {
 
 export function getBlogPost(slug: string) {
   const filePath = path.join(process.cwd(), "src/content/blogs", `${slug}.mdx`);
+  if (!fs.existsSync(filePath)) {
+    return null;
+  }
   const { data, content } = readMDXFile(filePath);
   return {
     metadata: data as Metadata,

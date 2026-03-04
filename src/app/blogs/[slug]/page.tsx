@@ -1,11 +1,11 @@
-import React from "react";
-import { getBlogPost, getBlogPosts } from "@/lib/mdx";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import ScrollProgress from "@/components/ui/scroll-progress";
-import Link from "next/link";
-import { ArrowLeft, CalendarDays, User } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import RevealAnimation from "@/components/reveal-animations";
+import { Badge } from "@/components/ui/badge";
+import ScrollProgress from "@/components/ui/scroll-progress";
+import { getBlogPost, getBlogPosts } from "@/lib/mdx";
+import { ArrowLeft, CalendarDays, User } from "lucide-react";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -16,6 +16,11 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const post = getBlogPost(params.slug);
+  if (!post) {
+    return {
+      title: "Post Not Found",
+    };
+  }
   return {
     title: `${post.metadata.title} | Portfolio`,
     description: post.metadata.summary,
@@ -61,6 +66,10 @@ const components = {
 
 export default function BlogPost({ params }: { params: { slug: string } }) {
   const post = getBlogPost(params.slug);
+
+  if (!post) {
+    notFound();
+  }
 
   return (
     <div className="min-h-screen relative font-sans">
